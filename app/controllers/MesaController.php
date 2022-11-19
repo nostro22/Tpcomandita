@@ -9,13 +9,11 @@ class MesaController extends Mesa implements IApiUsable
     {
         $parametros = $request->getParsedBody();
 
-        $codigo_mesa = $parametros['codigo_mesa'];
         $id_personal = $parametros['id_personal'];
         $estado = $parametros['estado'];
 
         // Creamos el Mesa
         $usr = new Mesa();
-        $usr->codigo_mesa = $codigo_mesa;
         $usr->id_personal = $id_personal;
         $usr->estado = $estado;
         $usr->crearMesa();
@@ -31,8 +29,9 @@ class MesaController extends Mesa implements IApiUsable
     {
      
         // Buscamos Mesa por estado
-        $usr = $args['codigo_mesa$codigo_mesa'];
-        $Mesa = Mesa::obtenerMesa($usr);
+        $id = array_slice($args['codigo_mesa'],2);
+        var_dump($id);
+        $Mesa = Mesa::obtenerMesa($id);
         $payload = json_encode($Mesa);
 
         $response->getBody()->write($payload);
@@ -77,7 +76,7 @@ class MesaController extends Mesa implements IApiUsable
         // Creamos el Mesa
         $usr = new Mesa();
         $usr->id = $id;
-        $usr->codigo_mesa = $codigo_mesa;
+        $usr->prefix = $codigo_mesa;
         $usr->id_personal = $id_personal;
         $usr->estado = $estado;
         

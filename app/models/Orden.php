@@ -8,6 +8,7 @@ require_once './models/UploadManager.php';
 
 class Orden
 {
+    public $prefix = "SD";
     public $id;
     public $id_mesa;
     public $estado;
@@ -31,6 +32,8 @@ class Orden
 
         return $objAccesoDatos->obtenerUltimoId();
     }
+
+   
 
     public function getid_mesa(){
         return $this->id_mesa;
@@ -95,15 +98,16 @@ class Orden
         echo '<caption> Datos</caption>';
         echo "<th>[ID]</th>
         <th>[ID MESA]</th>
-        <th>[nombre_cliente]</th>
         <th>[ESTADO]</th>
+        <th>[nombre_cliente]</th>
         <th>[imagen]</th>
         <th>[costo]</th>";
         foreach($lista as $entity){
             if($entity->estado==$estado || $estado == "todos")
             {
                 echo "<tr align='center'>";
-                echo "<td>[".$entity->id."]</td>";
+                $codigoOrden = $entity->prefix. sprintf("%03d", $entity->id);
+                echo "<td>[".$codigoOrden."]</td>";
                 echo "<td>[".$entity->id_mesa."]</td>";
                 echo "<td>[".$entity->estado."]</td>";
                 echo "<td>[".$entity->nombre_cliente."]</td>";
@@ -111,6 +115,33 @@ class Orden
                 echo "<td>[".$entity->costo."]</td>";
                 echo "</tr>";
             }
+        }
+            echo "</table>" ;
+        }
+
+    public function imprimirOrdensConDemora($lista){
+        echo "<table border='2'>";
+        echo '<caption> Datos</caption>';
+        echo "<th>[ID]</th>
+        <th>[ID MESA]</th>
+        <th>[ESTADO]</th>
+        <th>[nombre_cliente]</th>
+        <th>[imagen]</th>
+        <th>[demora min]</th>
+        <th>[costo]</th>";
+        foreach($lista as $entity){
+            $codigoOrden = $entity->prefix. sprintf("%03d", $entity->id);
+                $demora = Producto::obtenerMaxProductoDemoraOrden($codigoOrden,$entity->id_mesa);
+                
+                echo "<tr align='center'>";
+                echo "<td>[".$codigoOrden."]</td>";
+                echo "<td>[".$entity->id_mesa."]</td>";
+                echo "<td>[".$entity->estado."]</td>";
+                echo "<td>[".$entity->nombre_cliente."]</td>";
+                echo "<td>[".$entity->imagen."]</td>";
+                echo "<td>[".$demora."]</td>";
+                echo "<td>[".$entity->costo."]</td>";
+                echo "</tr>";
         }
             echo "</table>" ;
         }

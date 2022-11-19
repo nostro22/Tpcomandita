@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-11-2022 a las 19:43:59
+-- Tiempo de generación: 19-11-2022 a las 19:32:45
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -46,8 +46,8 @@ CREATE TABLE `encuesta` (
 --
 
 CREATE TABLE `mesas` (
-  `id` int(11) NOT NULL,
-  `codigo_mesa` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
+  `prefix` varchar(2) COLLATE utf8_spanish2_ci NOT NULL DEFAULT 'MS',
+  `id` int(3) UNSIGNED ZEROFILL NOT NULL,
   `id_personal` int(11) NOT NULL,
   `estado` varchar(50) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
@@ -56,9 +56,8 @@ CREATE TABLE `mesas` (
 -- Volcado de datos para la tabla `mesas`
 --
 
-INSERT INTO `mesas` (`id`, `codigo_mesa`, `id_personal`, `estado`) VALUES
-(1, 'ME012', 1, 'con cliente esperando pedido'),
-(2, 'ME002', 4, 'cerrada');
+INSERT INTO `mesas` (`prefix`, `id`, `id_personal`, `estado`) VALUES
+('MS', 001, 9, 'con cliente esperando pedido');
 
 -- --------------------------------------------------------
 
@@ -67,8 +66,9 @@ INSERT INTO `mesas` (`id`, `codigo_mesa`, `id_personal`, `estado`) VALUES
 --
 
 CREATE TABLE `ordenes` (
-  `id` int(11) NOT NULL,
-  `id_mesa` int(11) DEFAULT NULL,
+  `prefix` varchar(2) COLLATE utf8_spanish2_ci NOT NULL DEFAULT 'SD',
+  `id` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `id_mesa` varchar(5) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `estado` varchar(30) COLLATE utf8_spanish2_ci NOT NULL DEFAULT 'Pendiente',
   `nombre_cliente` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `imagen` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
@@ -79,27 +79,14 @@ CREATE TABLE `ordenes` (
 -- Volcado de datos para la tabla `ordenes`
 --
 
-INSERT INTO `ordenes` (`id`, `id_mesa`, `estado`, `nombre_cliente`, `imagen`, `costo`) VALUES
-(1, 0, 'cancelada', 'cerrada', 'Orden_1.png', 22),
-(2, 0, 'en preparacion', 'cerrada', 'Orden_2.png', 22),
-(3, 0, 'cancelada', 'cerrada', 'Orden_3.png', 100.5),
-(4, 0, 'Pendiente', 'cerrada', 'Orden_4.png', 22),
-(5, 0, 'Pendiente', 'cerrada', 'Orden_5.png', 22),
-(6, 0, 'Pendiente', 'cerrada', 'Orden_6.png', 22),
-(7, 0, 'Pendiente', 'cerrada', 'Orden_7.png', 22),
-(8, 0, 'Pendiente', 'cerrada', 'Orden_8.png', 22),
-(9, 0, 'Pendiente', 'cerrada', 'Orden_9.png', 22),
-(10, 0, 'Pendiente', 'cerrada', 'Orden_10.png', 22),
-(11, 0, 'Pendiente', 'cerrada', 'Orden_11.png', 22),
-(12, 0, 'Pendiente', 'cerrada', 'Orden_12.png', 22),
-(13, 0, 'Pendiente', 'cerrada', 'Orden_13.png', 22),
-(14, 0, 'Pendiente', 'cerrada', 'Orden_14.png', 22),
-(15, 0, 'Pendiente', 'cerrada', 'Orden_15.png', 22),
-(16, 0, 'Pendiente', 'cerrada', 'Orden_16.png', 22),
-(17, 0, 'Pendiente', 'cerrada', 'Orden_17.png', 22),
-(18, 0, 'Pendiente', 'cerrada', 'Orden_18.png', 22),
-(19, 0, 'Pendiente', 'cerrada', 'Orden_19.png', 22),
-(20, 0, 'Pendiente', 'manuel', 'Orden_20.png', 22);
+INSERT INTO `ordenes` (`prefix`, `id`, `id_mesa`, `estado`, `nombre_cliente`, `imagen`, `costo`) VALUES
+('SD', 003, 'MS001', 'pendiente', 'Maria', 'Orden_003.png', 730),
+('SD', 004, 'MS001', 'pendiente', 'Maria', NULL, 730),
+('SD', 005, 'MS001', 'pendiente', 'Maria', NULL, 730),
+('SD', 006, 'MS001', 'pendiente', 'Maria', NULL, 730),
+('SD', 007, 'MS001', 'pendiente', 'Maria', NULL, 730),
+('SD', 008, 'MS001', 'pendiente', 'Maria', NULL, 730),
+('SD', 009, 'MS001', 'pendiente', 'Maria', NULL, 730);
 
 -- --------------------------------------------------------
 
@@ -110,13 +97,13 @@ INSERT INTO `ordenes` (`id`, `id_mesa`, `estado`, `nombre_cliente`, `imagen`, `c
 CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
   `area` varchar(30) COLLATE utf8_spanish2_ci NOT NULL,
-  `id_orden_asociada` int(11) NOT NULL,
+  `id_orden_asociada` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
   `estado` varchar(30) COLLATE utf8_spanish2_ci NOT NULL,
   `descripcion` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `tipo` varchar(30) COLLATE utf8_spanish2_ci NOT NULL,
   `precio` float NOT NULL,
-  `tiempo_inicial` date NOT NULL DEFAULT current_timestamp(),
-  `tiempo_entrega` date DEFAULT NULL
+  `tiempo_inicial` timestamp NOT NULL DEFAULT current_timestamp(),
+  `tiempo_entrega` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
@@ -124,8 +111,41 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `area`, `id_orden_asociada`, `estado`, `descripcion`, `tipo`, `precio`, `tiempo_inicial`, `tiempo_entrega`) VALUES
-(1, 'cocina', 15, 'retirado', 'Una buena cerveza', 'cerveza', 100.25, '2022-11-12', '2022-11-10'),
-(2, 'cerveceria', 15, 'retirada', 'Una excelente cerveza', 'cerveza', 200, '2022-11-12', NULL);
+(33, 'cocina', 'SD003', 'en preparacion', 'millanesa de caballo', 'cocinero', 200, '2022-11-18 03:00:00', '2022-11-19 18:49:53'),
+(34, 'cocina', 'SD003', 'en preparacion', 'hamburguesa de garbanzo', 'cocinero', 200, '2022-11-18 03:00:00', '2022-11-19 18:49:53'),
+(35, 'cocina', 'SD003', 'en preparacion', 'hamburguesa de garbanzo', 'cocinero', 200, '2022-11-18 03:00:00', '2022-11-19 18:49:53'),
+(36, 'Barra de choperas', 'SD003', 'Listo para servir', 'corona', 'cervecero', 50, '2022-11-18 03:00:00', '2022-11-19 18:50:06'),
+(37, 'Barra de tragos', 'SD003', 'en preparacion', 'daikiri', 'bartender', 80, '2022-11-18 03:00:00', '2022-11-19 18:50:00'),
+(38, 'cocina', 'SD004', 'pendiente', 'millanesa de caballo', 'cocinero', 200, '2022-11-19 18:13:40', NULL),
+(39, 'cocina', 'SD004', 'pendiente', 'hamburguesa de garbanzo', 'cocinero', 200, '2022-11-19 18:13:40', NULL),
+(40, 'cocina', 'SD004', 'pendiente', 'hamburguesa de garbanzo', 'cocinero', 200, '2022-11-19 18:13:40', NULL),
+(41, 'Barra de choperas', 'SD004', 'pendiente', 'corona', 'cervecero', 50, '2022-11-19 18:13:40', NULL),
+(42, 'Barra de tragos', 'SD004', 'pendiente', 'daikiri', 'bartender', 80, '2022-11-19 18:13:40', NULL),
+(43, 'cocina', 'SD005', 'pendiente', 'millanesa de caballo', 'cocinero', 200, '2022-11-19 18:14:38', NULL),
+(44, 'cocina', 'SD005', 'pendiente', 'hamburguesa de garbanzo', 'cocinero', 200, '2022-11-19 18:14:38', NULL),
+(45, 'cocina', 'SD005', 'pendiente', 'hamburguesa de garbanzo', 'cocinero', 200, '2022-11-19 18:14:38', NULL),
+(46, 'Barra de choperas', 'SD005', 'pendiente', 'corona', 'cervecero', 50, '2022-11-19 18:14:38', NULL),
+(47, 'Barra de tragos', 'SD005', 'pendiente', 'daikiri', 'bartender', 80, '2022-11-19 18:14:38', NULL),
+(48, 'cocina', 'SD006', 'pendiente', 'millanesa de caballo', 'cocinero', 200, '2022-11-19 18:18:01', NULL),
+(49, 'cocina', 'SD006', 'pendiente', 'hamburguesa de garbanzo', 'cocinero', 200, '2022-11-19 18:18:01', NULL),
+(50, 'cocina', 'SD006', 'pendiente', 'hamburguesa de garbanzo', 'cocinero', 200, '2022-11-19 18:18:01', NULL),
+(51, 'Barra de choperas', 'SD006', 'pendiente', 'corona', 'cervecero', 50, '2022-11-19 18:18:01', NULL),
+(52, 'Barra de tragos', 'SD006', 'pendiente', 'daikiri', 'bartender', 80, '2022-11-19 18:18:01', NULL),
+(53, 'cocina', 'SD007', 'pendiente', 'millanesa de caballo', 'cocinero', 200, '2022-11-19 18:18:42', NULL),
+(54, 'cocina', 'SD007', 'pendiente', 'hamburguesa de garbanzo', 'cocinero', 200, '2022-11-19 18:18:42', NULL),
+(55, 'cocina', 'SD007', 'pendiente', 'hamburguesa de garbanzo', 'cocinero', 200, '2022-11-19 18:18:42', NULL),
+(56, 'Barra de choperas', 'SD007', 'pendiente', 'corona', 'cervecero', 50, '2022-11-19 18:18:42', NULL),
+(57, 'Barra de tragos', 'SD007', 'pendiente', 'daikiri', 'bartender', 80, '2022-11-19 18:18:42', NULL),
+(58, 'cocina', 'SD008', 'pendiente', 'millanesa de caballo', 'cocinero', 200, '2022-11-19 18:19:57', NULL),
+(59, 'cocina', 'SD008', 'pendiente', 'hamburguesa de garbanzo', 'cocinero', 200, '2022-11-19 18:19:57', NULL),
+(60, 'cocina', 'SD008', 'pendiente', 'hamburguesa de garbanzo', 'cocinero', 200, '2022-11-19 18:19:57', NULL),
+(61, 'Barra de choperas', 'SD008', 'pendiente', 'corona', 'cervecero', 50, '2022-11-19 18:19:57', NULL),
+(62, 'Barra de tragos', 'SD008', 'pendiente', 'daikiri', 'bartender', 80, '2022-11-19 18:19:57', NULL),
+(63, 'cocina', 'SD009', 'pendiente', 'millanesa de caballo', 'cocinero', 200, '2022-11-19 18:23:46', NULL),
+(64, 'cocina', 'SD009', 'pendiente', 'hamburguesa de garbanzo', 'cocinero', 200, '2022-11-19 18:23:46', NULL),
+(65, 'cocina', 'SD009', 'pendiente', 'hamburguesa de garbanzo', 'cocinero', 200, '2022-11-19 18:23:46', NULL),
+(66, 'Barra de choperas', 'SD009', 'pendiente', 'corona', 'cervecero', 50, '2022-11-19 18:23:46', NULL),
+(67, 'Barra de tragos', 'SD009', 'pendiente', 'daikiri', 'bartender', 80, '2022-11-19 18:23:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -151,35 +171,23 @@ INSERT INTO `registros_login` (`id`, `id_usuario`, `nombre_usuario`, `fecha_logi
 (4, 3, 'socio2', '2022-11-12'),
 (5, 3, 'socio2', '2022-11-12'),
 (6, 3, 'socio2', '2022-11-12'),
-(7, 3, 'socio2', '2022-11-13');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tables`
---
-
-CREATE TABLE `tables` (
-  `id` int(11) NOT NULL,
-  `table_code` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
-  `employee_id` int(11) DEFAULT NULL,
-  `state` varchar(50) COLLATE utf8_spanish2_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `tables`
---
-
-INSERT INTO `tables` (`id`, `table_code`, `employee_id`, `state`) VALUES
-(2, 'ME002', 20, 'Con Cliente Esperando Pedido'),
-(3, 'ME003', 12, 'Con Cliente Pagando'),
-(4, 'ME004', 20, 'Cerrada'),
-(5, 'ME005', NULL, 'Cerrada'),
-(6, 'ME006', NULL, 'Cerrada'),
-(8, 'ME008', NULL, 'Cerrada'),
-(9, 'ME009', NULL, 'Cerrada'),
-(10, 'ME010', NULL, 'Cerrada'),
-(11, 'ME011', NULL, 'Cerrada');
+(7, 3, 'socio2', '2022-11-13'),
+(8, 3, 'socio2', '2022-11-18'),
+(9, 9, 'mozo1', '2022-11-18'),
+(10, 9, 'mozo1', '2022-11-18'),
+(11, 9, 'mozo1', '2022-11-18'),
+(12, 3, 'socio2', '2022-11-19'),
+(13, 9, 'mozo1', '2022-11-19'),
+(14, 9, 'mozo1', '2022-11-19'),
+(15, 3, 'socio2', '2022-11-19'),
+(16, 7, 'cervecero', '2022-11-19'),
+(17, 15, 'cocinero2', '2022-11-19'),
+(18, 6, 'bartender1', '2022-11-19'),
+(19, 3, 'socio2', '2022-11-19'),
+(20, 9, 'mozo1', '2022-11-19'),
+(21, 9, 'mozo1', '2022-11-19'),
+(22, 3, 'socio2', '2022-11-19'),
+(23, 9, 'mozo1', '2022-11-19');
 
 -- --------------------------------------------------------
 
@@ -231,13 +239,14 @@ ALTER TABLE `encuesta`
 --
 ALTER TABLE `mesas`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `codigo_mesa` (`codigo_mesa`);
+  ADD UNIQUE KEY `prefix` (`prefix`,`id`);
 
 --
 -- Indices de la tabla `ordenes`
 --
 ALTER TABLE `ordenes`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `prefix` (`prefix`,`id`);
 
 --
 -- Indices de la tabla `productos`
@@ -249,16 +258,7 @@ ALTER TABLE `productos`
 -- Indices de la tabla `registros_login`
 --
 ALTER TABLE `registros_login`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_usuario_registrado` (`id_usuario`);
-
---
--- Indices de la tabla `tables`
---
-ALTER TABLE `tables`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `table_code` (`table_code`),
-  ADD KEY `FK_table_employee_id` (`employee_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -281,59 +281,31 @@ ALTER TABLE `encuesta`
 -- AUTO_INCREMENT de la tabla `mesas`
 --
 ALTER TABLE `mesas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `ordenes`
 --
 ALTER TABLE `ordenes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT de la tabla `registros_login`
 --
 ALTER TABLE `registros_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT de la tabla `tables`
---
-ALTER TABLE `tables`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `mesas`
---
-ALTER TABLE `mesas`
-  ADD CONSTRAINT `FK_id_personal` FOREIGN KEY (`id_personal`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `registros_login`
---
-ALTER TABLE `registros_login`
-  ADD CONSTRAINT `FK_usuario_registrado` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tables`
---
-ALTER TABLE `tables`
-  ADD CONSTRAINT `FK_table_employee_id` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

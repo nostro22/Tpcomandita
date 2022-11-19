@@ -69,6 +69,28 @@ class Producto
         $consulta->execute();
     }
 
+    public static function modificarEstadoProducto($Producto,$estado,$tiempo_entrega)
+    {
+
+        if(!isset($tiempo_entrega))
+        {
+            $tiempo_entrega = $Producto->tiempo_entrega;
+        }
+
+
+        $objAccesoDato = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDato->prepararConsulta("UPDATE Productos 
+        SET 
+        estado = :estado ,        
+        tiempo_entrega = :tiempo_entrega
+        WHERE id = :id",);
+        $consulta->bindValue(':id', $Producto->id, PDO::PARAM_INT);
+        $consulta->bindValue(':estado', $estado, PDO::PARAM_STR);
+        $consulta->bindValue(':tiempo_entrega', $tiempo_entrega, PDO::PARAM_STR);
+        $consulta->execute();
+    }
+
+
     public static function borrarProducto($id)
     {
         $objAccesoDato = AccesoDatos::obtenerInstancia();
@@ -108,7 +130,20 @@ class Producto
             
         }
             echo "</table>" ;
-        }
+    }
 
+    public static function obtenerMaxProductoDemoraOrden($id_orden_asociada,$codigo_mesa)
+    {        
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT MAX(TIMESTAMPDIFF(MINUTE ,CURRENT_TIMESTAMP,`tiempo_entrega`)) AS minutos 
+        FROM productos JOIN ordenes WHERE id_orden_asociada = :id_orden_asociada 
+        AND (ordenes.id_mesa) = :codigo_mesa ;");
+        $consulta->bindValue(':id_orden_asociada', $id_orden_asociada, PDO::PARAM_STR);
+        $consulta->bindValue(':codigo_mesa', $codigo_mesa, PDO::PARAM_STR);
+        $consulta->execute();
+        $Producto =$consulta->fetchColumn();
+       
+        return $Producto;
+    }
 
 }

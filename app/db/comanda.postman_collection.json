@@ -31,11 +31,6 @@
 									"mode": "formdata",
 									"formdata": [
 										{
-											"key": "codigo_mesa",
-											"value": "ME001",
-											"type": "text"
-										},
-										{
 											"key": "id_personal",
 											"value": "4",
 											"type": "text"
@@ -44,6 +39,12 @@
 											"key": "estado",
 											"value": "cerrada",
 											"type": "text"
+										},
+										{
+											"key": "codigo_mesa",
+											"value": "ME001",
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "nombre",
@@ -292,14 +293,14 @@
 					"name": "usuarios",
 					"item": [
 						{
-							"name": "CrearUsuario",
+							"name": "CrearUsuario Copy",
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgyMDYzNzMsImV4cCI6MTY2ODI2NjM3MywiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoiZWR1YXJkbyIsInRpcG8iOiJhZG1pbmlzdHJhZG9yIn0sImFwcCI6IlRlc3QgSldUIn0.H5Yi3UnrfQdUboHt-Q9D7G8pGoyTemJINnEDt0DKhNM",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njg0NzIwMDEsImV4cCI6MTY2ODUzMjAwMSwiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoiZWR1YXJkbyIsInRpcG8iOiJhZG1pbmlzdHJhZG9yIn0sImFwcCI6IlRlc3QgSldUIn0.R5U2UrkPBDMhl3zjt1nXXRNUsAykhNCu98ZacsDKd28",
 											"type": "string"
 										}
 									]
@@ -311,7 +312,7 @@
 									"formdata": [
 										{
 											"key": "nombre_usuario",
-											"value": "cocinero7",
+											"value": "cocinero8",
 											"type": "text"
 										},
 										{
@@ -332,14 +333,14 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:666/productos/",
+									"raw": "http://localhost:666/usuarios/",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "666",
 									"path": [
-										"productos",
+										"usuarios",
 										""
 									]
 								}
@@ -347,7 +348,7 @@
 							"response": []
 						},
 						{
-							"name": "login",
+							"name": "login Copy",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -403,7 +404,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgyNjg1NjAsImV4cCI6MTY2ODMyODU2MCwiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoiZWR1YXJkbyIsInRpcG8iOiJhZG1pbmlzdHJhZG9yIn0sImFwcCI6IlRlc3QgSldUIn0.r3HGkyexESmXjW5DA2YeyJfpCDukchXyKNkNh90sUJo",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njg0NzIwMDEsImV4cCI6MTY2ODUzMjAwMSwiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoiZWR1YXJkbyIsInRpcG8iOiJhZG1pbmlzdHJhZG9yIn0sImFwcCI6IlRlc3QgSldUIn0.R5U2UrkPBDMhl3zjt1nXXRNUsAykhNCu98ZacsDKd28",
 											"type": "string"
 										}
 									]
@@ -450,7 +451,7 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:666/usuarios/listar/mozo",
+									"raw": "http://localhost:666/usuarios/listar/todos",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -459,7 +460,7 @@
 									"path": [
 										"usuarios",
 										"listar",
-										"mozo"
+										"todos"
 									]
 								}
 							},
@@ -471,6 +472,16 @@
 								"disableBodyPruning": true
 							},
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njg0NzIwMDEsImV4cCI6MTY2ODUzMjAwMSwiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoiZWR1YXJkbyIsInRpcG8iOiJhZG1pbmlzdHJhZG9yIn0sImFwcCI6IlRlc3QgSldUIn0.R5U2UrkPBDMhl3zjt1nXXRNUsAykhNCu98ZacsDKd28",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"body": {
@@ -491,7 +502,7 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:666/usuarios/socio1",
+									"raw": "http://localhost:666/usuarios/socio2",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -499,7 +510,7 @@
 									"port": "666",
 									"path": [
 										"usuarios",
-										"socio1"
+										"socio2"
 									]
 								}
 							},
@@ -671,7 +682,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgyNjg1NjAsImV4cCI6MTY2ODMyODU2MCwiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoiZWR1YXJkbyIsInRpcG8iOiJhZG1pbmlzdHJhZG9yIn0sImFwcCI6IlRlc3QgSldUIn0.r3HGkyexESmXjW5DA2YeyJfpCDukchXyKNkNh90sUJo",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njg0NzIwMDEsImV4cCI6MTY2ODUzMjAwMSwiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoiZWR1YXJkbyIsInRpcG8iOiJhZG1pbmlzdHJhZG9yIn0sImFwcCI6IlRlc3QgSldUIn0.R5U2UrkPBDMhl3zjt1nXXRNUsAykhNCu98ZacsDKd28",
 											"type": "string"
 										}
 									]
@@ -963,7 +974,7 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:666/productos/listar/retirada",
+									"raw": "http://localhost:666/productos/listar/",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -972,7 +983,7 @@
 									"path": [
 										"productos",
 										"listar",
-										"retirada"
+										""
 									]
 								}
 							},
@@ -1095,6 +1106,917 @@
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "2do Sprint",
+			"item": [
+				{
+					"name": "login Socio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre_usuario",
+									"value": "socio2",
+									"type": "text"
+								},
+								{
+									"key": "clave",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "perfil",
+									"value": "administador",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "clave",
+									"value": "eduardoclave",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login Mozo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre_usuario",
+									"value": "mozo1",
+									"type": "text"
+								},
+								{
+									"key": "clave",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "perfil",
+									"value": "administador",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "clave",
+									"value": "eduardoclave",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login Cervecero",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre_usuario",
+									"value": "cervecero",
+									"type": "text"
+								},
+								{
+									"key": "clave",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "perfil",
+									"value": "administador",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "clave",
+									"value": "eduardoclave",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login Cocinero",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre_usuario",
+									"value": "cocinero2",
+									"type": "text"
+								},
+								{
+									"key": "clave",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "perfil",
+									"value": "administador",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "clave",
+									"value": "eduardoclave",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login Bartender",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre_usuario",
+									"value": "bartender1",
+									"type": "text"
+								},
+								{
+									"key": "clave",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "perfil",
+									"value": "administador",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "clave",
+									"value": "eduardoclave",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Orden Completa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njg4ODE5MDIsImV4cCI6MTY2ODk0MTkwMiwiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoicGVuZWxvcGUiLCJ0aXBvIjoibW96byIsImlkIjo5fSwiYXBwIjoiVGVzdCBKV1QifQ.nYNTByiy3r7EmKwCwTOXsYQWnTLnPQX0rTKRaPZOdWo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orden\" : {\r\n        \"id_mesa\":\"MS001\",\r\n        \"nombre_cliente\":\"Maria\"\r\n    },\r\n\r\n\"pedidos\" :{\r\n\r\n    \"0\":{\r\n        \"area\":\"cocina\",\r\n        \"descripcion\":\"millanesa de caballo\",\r\n        \"tipo\":\"cocinero\",\r\n        \"precio\":\"200\"\r\n    },\r\n    \"1\":{\r\n        \"area\":\"cocina\",\r\n        \"descripcion\":\"hamburguesa de garbanzo\",\r\n        \"tipo\":\"cocinero\",\r\n        \"precio\":\"200\"\r\n    },\r\n        \"2\":{\r\n        \"area\":\"cocina\",\r\n        \"descripcion\":\"hamburguesa de garbanzo\",\r\n        \"tipo\":\"cocinero\",\r\n        \"precio\":\"200\"\r\n    },\r\n        \"3\":{\r\n        \"area\":\"Barra de choperas\",\r\n        \"descripcion\":\"corona\",\r\n        \"tipo\":\"cervecero\",\r\n        \"precio\":\"50\"\r\n    },\r\n        \"4\":{\r\n        \"area\":\"Barra de tragos\",\r\n        \"descripcion\":\"daikiri\",\r\n        \"tipo\":\"bartender\",\r\n        \"precio\":\"80\"\r\n    }\r\n}\r\n    \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/mozo/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"mozo",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cargar Foto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njg4MjgzNTUsImV4cCI6MTY2ODg4ODM1NSwiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoicGVuZWxvcGUiLCJ0aXBvIjoibW96byJ9LCJhcHAiOiJUZXN0IEpXVCJ9.fLpzvJmMhd4MXdRtLrweiD8lw2HVSVLQxtWIobuHrAI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id_orden",
+									"value": "002",
+									"type": "text"
+								},
+								{
+									"key": "imagen",
+									"type": "file",
+									"src": "/C:/Users/Usuario/Downloads/actividadJava.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/mozo/foto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"mozo",
+								"foto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pasar a Preparacion Producto Cervecero",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njg4Mjk2ODEsImV4cCI6MTY2ODg4OTY4MSwiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoiY2VydmVybyIsInRpcG8iOiJjZXJ2ZWNlcm8ifSwiYXBwIjoiVGVzdCBKV1QifQ.bYC9GlaQ_e_rJ4BZoSadpMk4l5RtUkJcgcgJTtICXxA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "penelope",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "todos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "listos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "nombre_usuario",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "usuario",
+									"value": "eduardo",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "clave",
+									"value": "eduardoclave",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/cervecero/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"cervecero",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pasar a Preparacion Producto Cocinero",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njg4MzE0NjgsImV4cCI6MTY2ODg5MTQ2OCwiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoiYWRyaWFuIiwidGlwbyI6ImNvY2luZXJvIn0sImFwcCI6IlRlc3QgSldUIn0.5gWulfFQqFw1rDVrWK4b6BbJhighIeUQDUQ58G6L53U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "penelope",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "todos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "listos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "nombre_usuario",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "usuario",
+									"value": "eduardo",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "clave",
+									"value": "eduardoclave",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/cocinero/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"cocinero",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pasar a Preparacion Producto Bartender",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njg4MzE2MTIsImV4cCI6MTY2ODg5MTYxMiwiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoiZGlvbmlzaW9zIiwidGlwbyI6ImJhcnRlbmRlciJ9LCJhcHAiOiJUZXN0IEpXVCJ9.rK5o9b3fCeo7O7U8pH7kRy2PqchcNy3-7Ceo9_JWudY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "penelope",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "todos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "listos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "nombre_usuario",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "usuario",
+									"value": "eduardo",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "clave",
+									"value": "eduardoclave",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/bartender/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"bartender",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pasar a listo para Servir Producto Cervecero",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njg4Mjk2ODEsImV4cCI6MTY2ODg4OTY4MSwiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoiY2VydmVybyIsInRpcG8iOiJjZXJ2ZWNlcm8ifSwiYXBwIjoiVGVzdCBKV1QifQ.bYC9GlaQ_e_rJ4BZoSadpMk4l5RtUkJcgcgJTtICXxA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "penelope",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "todos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "listos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "nombre_usuario",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "usuario",
+									"value": "eduardo",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "clave",
+									"value": "eduardoclave",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/cervecero/preparado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"cervecero",
+								"preparado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pasar a listo para Servir Producto Cocinero Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njg4MzE0NjgsImV4cCI6MTY2ODg5MTQ2OCwiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoiYWRyaWFuIiwidGlwbyI6ImNvY2luZXJvIn0sImFwcCI6IlRlc3QgSldUIn0.5gWulfFQqFw1rDVrWK4b6BbJhighIeUQDUQ58G6L53U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "penelope",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "todos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "listos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "nombre_usuario",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "usuario",
+									"value": "eduardo",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "clave",
+									"value": "eduardoclave",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/cocinero/preparado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"cocinero",
+								"preparado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pasar a listo para Servir Producto Bartender Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njg4MzE2MTIsImV4cCI6MTY2ODg5MTYxMiwiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoiZGlvbmlzaW9zIiwidGlwbyI6ImJhcnRlbmRlciJ9LCJhcHAiOiJUZXN0IEpXVCJ9.rK5o9b3fCeo7O7U8pH7kRy2PqchcNy3-7Ceo9_JWudY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "penelope",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "todos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "listos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "nombre_usuario",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "usuario",
+									"value": "eduardo",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "clave",
+									"value": "eduardoclave",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/bartender/preparado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"bartender",
+								"preparado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedir Demora Cliente",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njg0NzIwMDEsImV4cCI6MTY2ODUzMjAwMSwiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoiZWR1YXJkbyIsInRpcG8iOiJhZG1pbmlzdHJhZG9yIn0sImFwcCI6IlRlc3QgSldUIn0.R5U2UrkPBDMhl3zjt1nXXRNUsAykhNCu98ZacsDKd28",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "penelope",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "todos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "listos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "nombre_usuario",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "usuario",
+									"value": "eduardo",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "clave",
+									"value": "eduardoclave",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/ordenes/MS001/SD003",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"ordenes",
+								"MS001",
+								"SD003"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedir Demoras Administrador",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njg4NzY4NzMsImV4cCI6MTY2ODkzNjg3MywiYXVkIjoiN2Q0MzIxMWYwOGIyYzA4NjRhMzQ2MGU3NGE3MjNmYzY3MDA2MjA0OSIsImRhdGEiOnsibm9tYnJlIjoiZWR1YXJkbyIsInRpcG8iOiJhZG1pbmlzdHJhZG9yIn0sImFwcCI6IlRlc3QgSldUIn0.Y23Vxr0Tm4A0z_F-vK0BXRCfPUr6CF2_BX4V9puwpxY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "penelope",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "todos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "listos",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "nombre_usuario",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "usuario",
+									"value": "eduardo",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "clave",
+									"value": "eduardoclave",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/socio",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"socio"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

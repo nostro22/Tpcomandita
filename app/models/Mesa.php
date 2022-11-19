@@ -3,7 +3,7 @@
 class Mesa
 {
     public $id;
-    public $codigo_mesa;
+    public $prefix;
     public $id_personal;
     public $estado;
     
@@ -12,9 +12,8 @@ class Mesa
     public function crearMesa()
     {
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
-        $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO mesas (codigo_mesa, estado, id_personal)
-        VALUES (:codigo_mesa , :estado , :id_personal )");        
-        $consulta->bindValue(':codigo_mesa', $this->codigo_mesa, PDO::PARAM_STR);
+        $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO mesas (estado, id_personal)
+        VALUES (:estado , :id_personal )");        
         $consulta->bindValue(':estado', $this->estado, PDO::PARAM_STR);
         $consulta->bindValue(':id_personal', $this->id_personal, PDO::PARAM_STR);
         $consulta->execute();
@@ -22,8 +21,8 @@ class Mesa
         return $objAccesoDatos->obtenerUltimoId();
     }
 
-    public function getcodigo_mesa(){
-        return $this->codigo_mesa;
+    public function getprefix(){
+        return $this->prefix;
     }
 
     public static function obtenerTodos()
@@ -52,12 +51,10 @@ class Mesa
         $objAccesoDato = AccesoDatos::obtenerInstancia();
         $consulta = $objAccesoDato->prepararConsulta("UPDATE Mesas 
         SET 
-        codigo_mesa = :codigo_mesa ,
         estado = :estado ,
         id_personal = :id_personal
         WHERE id = :id",);
         $consulta->bindValue(':id', $Mesa->id, PDO::PARAM_INT);
-        $consulta->bindValue(':codigo_mesa',$Mesa->codigo_mesa, PDO::PARAM_STR);
         $consulta->bindValue(':estado', $Mesa->estado, PDO::PARAM_STR);
         $consulta->bindValue(':id_personal', $Mesa->id_personal, PDO::PARAM_STR);
         $consulta->execute();
@@ -78,15 +75,14 @@ class Mesa
         echo "<table border='2'>";
         echo '<caption> Datos</caption>';
         echo "<th>[ID]</th>
-        <th>[CODIGO PEDIDO]</th>
         <th>[ID MOZO]</th>
         <th>[ESTADO]</th>";
         foreach($lista as $entity){
             if($entity->estado==$estado || $estado == "todos")
             {
-                echo "<tr align='center'>";
-                echo "<td>[".$entity->id."]</td>";
-                echo "<td>[".$entity->codigo_mesa."]</td>";
+                echo "<tr align='center'>";                
+                $codigoMesa = $entity->prefix. sprintf("%03d", $entity->id);
+                echo "<td>[".$codigoMesa."]</td>";
                 echo "<td>[".$entity->id_personal."]</td>";
                 echo "<td>[".$entity->estado."]</td>";
                 echo "</tr>";

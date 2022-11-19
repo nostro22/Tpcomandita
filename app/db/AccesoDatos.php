@@ -23,6 +23,21 @@ class AccesoDatos
         return self::$objAccesoDatos;
     }
 
+    public function prepararTransacion(){
+        return $this->objetoPDO->beginTransaction();
+    }
+    public function ejecutarTransacion(){
+        return $this->objetoPDO->commit();
+    }
+
+    public function devolverTransacion(){
+        return $this->objetoPDO->rollBack();
+    }
+
+    public function existeUnaTransacionEnProceso(){
+        return $this->objetoPDO->inTransaction();
+    }
+
     public function prepararConsulta($sql)
     {
         return $this->objetoPDO->prepare($sql);

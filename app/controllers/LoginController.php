@@ -23,14 +23,15 @@
       
         $payload = json_encode(array('status' => 'Usuario invalido'));
         if(!is_null($user)){
-            if(password_verify($pass, $user->clave) && $user->tiempo_inicial==null){
+            if(password_verify($pass, $user->clave)){
                 $userData = array(                    
                     'nombre' => $user->nombre,                    
-                    'tipo' => $user->tipo);
+                    'tipo' => $user->tipo,
+                    'id' => $user->id);
             
                     $payload = json_encode(array(
                     'Token' => AutentificadorJWT::CrearToken($userData), 
-                    'response' => 'Valid_user', 
+                    'response' => 'Usuario valido', 
                     'tipo' => $user->tipo));
                 $idLoginInserted = Usuario::insertLogin($user);
 
